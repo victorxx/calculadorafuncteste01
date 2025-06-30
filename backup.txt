@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <title>Calculadora de Recompensa - Ganhe Bônus com Novos Clientes</title>
+  
+  <meta name="description" content="Calculadora simples para calcular seu bônus mensal baseado em novos clientes adquiridos. Insira seu salário base e número de clientes para ver seu bônus e salário total." />
+  <meta name="keywords" content="calculadora, recompensa, bônus, salário, novos clientes, vendas, bônus mensal" />
+  <meta name="author" content="Seu Nome ou Empresa" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Calculadora de Recompensa - Ganhe Bônus com Novos Clientes" />
+  <meta property="og:description" content="Calcule facilmente seu bônus mensal baseado no número de novos clientes adquiridos." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seudominio.com/seupagina" />
+  <meta property="og:image" content="https://seudominio.com/imagem-preview.jpg" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadora de Recompensa - Ganhe Bônus com Novos Clientes" />
+  <meta name="twitter:description" content="Calcule seu bônus mensal baseado em novos clientes adquiridos." />
+  <meta name="twitter:image" content="https://seudominio.com/imagem-preview.jpg" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 30px;
+      background-color: #121212;
+      color: #f1f1f1;
+    }
+
+    h1 {
+      color: #00bfff;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+
+    input {
+      padding: 8px;
+      width: 200px;
+      margin-top: 5px;
+      background-color: #1f1f1f;
+      color: #fff;
+      border: 1px solid #555;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 15px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .resultado {
+      margin-top: 25px;
+      padding: 15px;
+      border: 1px solid #444;
+      background-color: #1e2a1e;
+      color: #b3ffb3;
+    }
+
+    .video-container {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    iframe {
+      width: 320px;
+      height: 180px;
+      border: none;
+    }
+
+    #ads {
+      color: white;
+      font-size: large;
+      position: fixed;
+      bottom: 200px;
+      left: 60%;
+      background-color: #d62300;
+      border-radius: 8px;
+      border: none;
+      padding: 50px 66px;
+      cursor: pointer;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+      width: 10%;
+      animation: piscar-forte 1s infinite;
+    }
+
+    @keyframes piscar-forte {
+      0% {
+        background-color: #d62300;
+        color: white;
+        box-shadow: 0 0 10px 3px #ff3b3b;
+        opacity: 1;
+      }
+      25% {
+        background-color: #ff3b3b;
+        color: yellow;
+        box-shadow: 0 0 20px 6px #ffff00;
+        opacity: 0.7;
+      }
+      50% {
+        background-color: #d62300;
+        color: white;
+        box-shadow: 0 0 10px 3px #ff3b3b;
+        opacity: 1;
+      }
+      75% {
+        background-color: #ff3b3b;
+        color: yellow;
+        box-shadow: 0 0 20px 6px #ffff00;
+        opacity: 0.7;
+      }
+      100% {
+        background-color: #d62300;
+        color: white;
+        box-shadow: 0 0 10px 3px #ff3b3b;
+        opacity: 1;
+      }
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Calculadora de Recompensa</h1>
+
+  <label for="salario">Salário base (R$):</label>
+  <input type="number" id="salario" placeholder="Ex: 3000" />
+
+  <label for="clientes">Novos clientes no mês:</label>
+  <input type="number" id="clientes" placeholder="Ex: 5" />
+
+  <button onclick="calcularRecompensa()">Calcular</button>
+
+  <div id="resultado" class="resultado" style="display:none;"></div>
+
+  <!-- Área onde vídeos serão exibidos -->
+  <div class="video-container" id="videoEmbed"></div>
+
+  <script>
+    const videoIds = ["jvnswaZtQLQ", "C_TuknyBx4I", "53LEufPGam8"];
+
+    function mostrarVideos() {
+      const videoEmbedDiv = document.getElementById('videoEmbed');
+      videoEmbedDiv.innerHTML = "";
+      videoIds.forEach(id => {
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://www.youtube.com/embed/${id}`;
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        videoEmbedDiv.appendChild(iframe);
+      });
+    }
+
+    mostrarVideos();
+
+    function calcularRecompensa() {
+      const salarioBase = parseFloat(document.getElementById('salario').value);
+      const novosClientes = parseInt(document.getElementById('clientes').value);
+      const resultadoDiv = document.getElementById('resultado');
+
+      if (isNaN(salarioBase) || isNaN(novosClientes)) {
+        resultadoDiv.innerHTML = "Por favor, preencha os campos corretamente.";
+        resultadoDiv.style.display = "block";
+        resultadoDiv.style.backgroundColor = "#4a0000";
+        resultadoDiv.style.color = "#ffb3b3";
+        return;
+      }
+
+      const bonusPercentual = 0.02;
+      let bonus = 0;
+      let mensagem = "";
+
+      if (novosClientes >= 5) {
+        bonus = salarioBase * bonusPercentual;
+        mensagem = "Parabéns! Você ganhou 2% de bônus.";
+      } else {
+        mensagem = "Você não atingiu a meta de 5 novos clientes. Sem bônus este mês.";
+      }
+
+      const salarioTotal = salarioBase + bonus;
+
+      resultadoDiv.innerHTML = `
+        <strong>${mensagem}</strong><br><br>
+        Salário base: R$ ${salarioBase.toFixed(2)}<br>
+        Bônus: R$ ${bonus.toFixed(2)}<br>
+        <strong>Salário total: R$ ${salarioTotal.toFixed(2)}</strong>
+      `;
+      resultadoDiv.style.display = "block";
+    }
+
+    // Propaganda
+    function mudar() {
+      const links = [
+        "https://hostinger.com.br?REFERRALCODE=SSNVICTORXU8",
+        "https://geocredibnkvitoria.com/",
+        "https://vpserp.vercel.app/",
+        "https://creditopessoal.vercel.app/",
+        "https://brasilbrasileiross.blogspot.com/",
+        "https://stfly.biz/7MNLF",
+        "https://www.espiritosanto-es.com.br/linhadotempovitoria/",
+        "https://piadasrepositorio.vercel.app/",
+        "https://www.youtube.com/watch?v=gBclanEnn88",
+        "https://ocomerciobrasileironoticia.blogspot.com/2025/05/erp-profissional-para-empresas.html",
+        "https://www.youtube.com/@gamenologia",
+        "https://jogosantigos472302513.wordpress.com/maquinas-vps-temos-todas-as-opcoes-de-maqinas-para-voce/",
+        "https://bibliadonline.netlify.app/",
+        "https://www.larissasaib.com.br/",
+        "https://remarkable-gelato-4db597.netlify.app/consorciopagina.html",
+        "https://www.airbnb.com.br/r/saibvictore?s=6&t=061n0g"
+      ];
+      const mudei = links[Math.floor(Math.random() * links.length)];
+      document.getElementById('novo').href = mudei;
+    }
+
+    setInterval(mudar, 300);
+  </script>
+
+  <div id="ads">
+    <a href="#" id="novo" target="_blank">
+      CONFERIR ESSA OPORTUNIDADE!
+    </a>
+  </div>
+</body>
+</html>
